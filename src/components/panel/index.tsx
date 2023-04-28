@@ -1,6 +1,6 @@
 import styles from "./styles.module.scss";
 import iconEth from "../../assets/eth.png";
-import iconArb from "../../assets/arb.png";
+// import iconArb from "../../assets/arb.png";
 import iconFlower from "../../assets/input-flower.png";
 
 export function Panel() {
@@ -83,16 +83,16 @@ export function Panel() {
 }
 
 function Input({ showTag = false, label }: { showTag?: boolean; label: string }) {
-	const CRYPTOS = [
-		{
-			img: iconEth,
-			label: "ETH",
-		},
-		{
-			img: iconArb,
-			label: "ARB",
-		},
-	];
+	// const CRYPTOS = [
+	// 	{
+	// 		img: iconEth,
+	// 		label: "ETH",
+	// 	},
+	// 	{
+	// 		img: iconArb,
+	// 		label: "ARB",
+	// 	},
+	// ];
 	return (
 		<div className={styles.mainAmount}>
 			<div className={styles.mainAmountTop}>
