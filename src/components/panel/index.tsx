@@ -4,7 +4,7 @@ import iconArb from "../../assets/arb.png";
 import iconFlower from "../../assets/input-flower.png";
 import React, { useState } from "react";
 
-export function Panel({ ethBalance }) {
+export function Panel({ ethBalance }: { ethBalance: string }) {
 	const FAST_BUY = [
 		{
 			label: "25%",
@@ -49,7 +49,7 @@ export function Panel({ ethBalance }) {
 						<div className={styles.line}></div>
 					</div>
 					<div className={styles.sellSection}>
-						<Input label="You sell" tokenIcon={iconArb} token="ARB" />
+						<Input label="You sell" tokenIcon={iconArb} token="ARB" initValue="00" />
 					</div>
 					<div className={styles.fastBuysWrapper}>
 						{FAST_BUY.map((item) => {

@@ -3,9 +3,11 @@ import { Panel } from "./components/panel";
 import { ethers } from "ethers";
 import Web3Modal from "web3modal";
 function App() {
-	const [provider, setProvider] = useState(null);
-	const [account, setAccount] = useState(null);
+	const [provider, setProvider] = useState<ethers.providers.Web3Provider>();
+	const [account, setAccount] = useState("");
 
+	console.log(provider);
+	console.log(account);
 	const [ethBalance, setEthBalance] = useState("");
 
 	useEffect(() => {
