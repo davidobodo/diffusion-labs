@@ -3,13 +3,8 @@
 	border-radius: 3rem;
 	position: relative;
 	padding: 2px;
-	background: radial-gradient(90.16% 143.01% at 15.32% 21.04%, rgba(0, 0, 0, 0.2) 0%, rgba(4, 4, 4, 0) 100%)
-			/* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */,
-		radial-gradient(80.69% 208.78% at 108.28% 112.58%, #e5e54b 0%, rgba(183, 38, 38, 0) 100%)
-			/* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */,
-		radial-gradient(80.38% 222.5% at -13.75% -12.36%, #e5e54b 0%, rgba(255, 255, 255, 0) 100%)
-			/* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
-
+	background: rgb(229, 229, 75);
+	background: linear-gradient(60deg, rgba(229, 229, 75, 1) 0%, rgba(229, 229, 75, 1) 35%, rgba(239, 83, 34, 1) 100%);
 	.containerInner {
 		background: #1e1e1e;
 		position: relative;
