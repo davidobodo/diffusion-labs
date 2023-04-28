@@ -1,10 +1,10 @@
 import styles from "./styles.module.scss";
 import iconEth from "../../assets/eth.png";
-// import iconArb from "../../assets/arb.png";
+import iconArb from "../../assets/arb.png";
 import iconFlower from "../../assets/input-flower.png";
 import React, { useState } from "react";
 
-export function Panel() {
+export function Panel({ ethBalance }) {
 	const FAST_BUY = [
 		{
 			label: "25%",
@@ -40,7 +40,7 @@ export function Panel() {
 						</div>
 					</div>
 					<div>
-						<Input showTag={true} label="You buy" />
+						<Input showTag={true} label="You buy" initValue={ethBalance} key={ethBalance} tokenIcon={iconEth} token="ETH" />
 					</div>
 					<div className={styles.swapWrapper}>
 						<button>
@@ -49,7 +49,7 @@ export function Panel() {
 						<div className={styles.line}></div>
 					</div>
 					<div className={styles.sellSection}>
-						<Input label="You sell" />
+						<Input label="You sell" tokenIcon={iconArb} token="ARB" />
 					</div>
 					<div className={styles.fastBuysWrapper}>
 						{FAST_BUY.map((item) => {
@@ -83,19 +83,20 @@ export function Panel() {
 	);
 }
 
-function Input({ showTag = false, label }: { showTag?: boolean; label: string }) {
-	// const CRYPTOS = [
-	// 	{
-	// 		img: iconEth,
-	// 		label: "ETH",
-	// 	},
-	// 	{
-	// 		img: iconArb,
-	// 		label: "ARB",
-	// 	},
-	// ];
-
-	const [inputValue, setInputValue] = useState("10");
+function Input({
+	showTag = false,
+	label,
+	initValue = "00",
+	tokenIcon,
+	token,
+}: {
+	showTag?: boolean;
+	label: string;
+	initValue: string;
+	tokenIcon: string;
+	token: string;
+}) {
+	const [inputValue, setInputValue] = useState(initValue);
 
 	const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setInputValue(e.target.value);
@@ -111,8 +112,8 @@ function Input({ showTag = false, label }: { showTag?: boolean; label: string })
 				<div className={styles.mainAmountBottomRight}>
 					{showTag && <div className={styles.tag}>Min</div>}
 					<div className={styles.crypto}>
-						<img src={iconEth} alt="" />
-						<p>ETH</p>
+						<img src={tokenIcon} alt="" />
+						<p>{token}</p>
 						<IconArrowDown />
 					</div>
 				</div>
@@ -125,11 +126,11 @@ function Switcher() {
 	return (
 		<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<rect width="40" height="40" rx="20" fill="#101010" />
-			<g clip-path="url(#clip0_675_293)">
-				<path d="M18 16L15 13L12 16" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-				<path d="M15 27V13" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-				<path d="M22 24L25 27L28 24" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-				<path d="M25 13V27" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+			<g clipPath="url(#clip0_675_293)">
+				<path d="M18 16L15 13L12 16" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+				<path d="M15 27V13" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+				<path d="M22 24L25 27L28 24" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+				<path d="M25 13V27" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 			</g>
 			<defs>
 				<clipPath id="clip0_675_293">
@@ -196,8 +197,8 @@ function BgGradient() {
 		>
 			<g filter="url(#filter0_f_3_1498)">
 				<path
-					fill-rule="evenodd"
-					clip-rule="evenodd"
+					fillRule="evenodd"
+					clipRule="evenodd"
 					d="M320.858 227.736C337.927 229.451 356.938 221.277 371.367 230.543C385.785 239.802 387.719 259.68 394.846 275.249C401.304 289.354 407.503 302.885 411.363 317.908C416.277 337.034 432.823 359.901 420.577 375.403C407.537 391.908 378.515 375.923 359.104 384.061C343.269 390.701 337.272 412.168 320.858 417.213C303.043 422.69 283.406 419.525 266.08 412.659C247.356 405.238 224.099 396.166 218.784 376.761C213.177 356.286 239.443 339.123 240.132 317.908C240.785 297.792 217.758 280.771 222.536 261.218C227.26 241.888 245.259 226.184 264.117 219.762C282.508 213.499 301.525 225.792 320.858 227.736Z"
 					fill="url(#paint0_linear_3_1498)"
 				/>
@@ -210,9 +211,9 @@ function BgGradient() {
 					width="643"
 					height="638"
 					filterUnits="userSpaceOnUse"
-					color-interpolation-filters="sRGB"
+					colorInterpolationFilters="sRGB"
 				>
-					<feFlood flood-opacity="0" result="BackgroundImageFix" />
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
 					<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
 					<feGaussianBlur stdDeviation="109" result="effect1_foregroundBlur_3_1498" />
 				</filter>
@@ -224,8 +225,8 @@ function BgGradient() {
 					y2="517.173"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#E5E54B" />
-					<stop offset="1" stop-color="#EF5322" />
+					<stop stopColor="#E5E54B" />
+					<stop offset="1" stopColor="#EF5322" />
 				</linearGradient>
 			</defs>
 		</svg>
