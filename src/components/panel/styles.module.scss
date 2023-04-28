@@ -5,6 +5,7 @@
 	padding: 2px;
 	background: rgb(229, 229, 75);
 	background: linear-gradient(60deg, rgba(229, 229, 75, 1) 0%, rgba(229, 229, 75, 1) 35%, rgba(239, 83, 34, 1) 100%);
+
 	.containerInner {
 		background: #1e1e1e;
 		position: relative;
@@ -42,9 +43,6 @@
 		}
 	}
 
-	.buySection {
-	}
-
 	.sellSection {
 		margin-bottom: 2rem;
 	}
@@ -62,6 +60,7 @@
 			p {
 				color: #7185aa;
 				font-size: 1.4rem;
+				font-weight: 400;
 			}
 		}
 
@@ -75,6 +74,9 @@
 				border: 0px;
 				font-size: 24px;
 				min-width: 0px;
+				font-weight: 500;
+				outline: none;
+				margin-right: 1rem;
 			}
 
 			.mainAmountBottomRight {

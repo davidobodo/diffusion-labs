@@ -2,6 +2,7 @@ import styles from "./styles.module.scss";
 import iconEth from "../../assets/eth.png";
 // import iconArb from "../../assets/arb.png";
 import iconFlower from "../../assets/input-flower.png";
+import React, { useState } from "react";
 
 export function Panel() {
 	const FAST_BUY = [
@@ -38,7 +39,7 @@ export function Panel() {
 							</button>
 						</div>
 					</div>
-					<div className={styles.buySection}>
+					<div>
 						<Input showTag={true} label="You buy" />
 					</div>
 					<div className={styles.swapWrapper}>
@@ -93,6 +94,12 @@ function Input({ showTag = false, label }: { showTag?: boolean; label: string })
 	// 		label: "ARB",
 	// 	},
 	// ];
+
+	const [inputValue, setInputValue] = useState("10");
+
+	const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setInputValue(e.target.value);
+	};
 	return (
 		<div className={styles.mainAmount}>
 			<div className={styles.mainAmountTop}>
@@ -100,7 +107,7 @@ function Input({ showTag = false, label }: { showTag?: boolean; label: string })
 				<p>{label}</p>
 			</div>
 			<div className={styles.mainAmountBottom}>
-				<input type="text" value="10" />
+				<input type="text" value={inputValue} onChange={onChange} />
 				<div className={styles.mainAmountBottomRight}>
 					{showTag && <div className={styles.tag}>Min</div>}
 					<div className={styles.crypto}>
