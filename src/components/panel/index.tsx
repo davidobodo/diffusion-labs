@@ -40,7 +40,15 @@ export function Panel({
 			return;
 		}
 
-		const newValue = value.replace(/[^0-9]/g, "");
+		const hasDecimal = value.includes(".");
+		let newValue = value.replace(/[^0-9.]/g, "");
+
+		//Ensure we don't have more than one decimal point
+		if (hasDecimal) {
+			const parts = newValue.split(".");
+			newValue = parts[0] + "." + parts[1].replace(/\./g, "");
+		}
+
 		setSell(newValue);
 	};
 	const [selectedSellToken, setSelectedSellToken] = useState<(typeof TOKENS)[0]>(TOKENS[3]);
