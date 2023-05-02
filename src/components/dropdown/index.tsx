@@ -1,18 +1,14 @@
-import { TOKENS } from "../../constants";
+import { TOKENS, TToken } from "../../constants";
 import styles from "./styles.module.scss";
 import { Icons } from "../";
-import { useState } from "react";
 
-export default function Dropdown() {
-	const [selected, setSelected] = useState<(typeof TOKENS)[0]>(TOKENS[0]);
-
-	const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-		const val = TOKENS.find((item) => item.address === e.target.value);
-
-		if (!val) return;
-
-		setSelected(val);
-	};
+export default function Dropdown({
+	selected,
+	onChange,
+}: {
+	selected: TToken;
+	onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+}) {
 	return (
 		<div className={styles.customSelect}>
 			<div className={styles.crypto}>

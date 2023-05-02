@@ -2,13 +2,10 @@ import { useEffect, useState } from "react";
 import { Panel } from "./components/panel";
 import { ethers } from "ethers";
 import Web3Modal from "web3modal";
-function App() {
-	const [provider, setProvider] = useState<ethers.providers.Web3Provider>();
-	const [account, setAccount] = useState("");
 
-	console.log(provider);
-	console.log(account);
-	const [ethBalance, setEthBalance] = useState("");
+function App() {
+	const [ethersProvider, setEthersProvider] = useState<ethers.providers.Web3Provider>();
+	const [walletAddress, setWalletAddress] = useState("");
 
 	useEffect(() => {
 		connectToMetamask();
@@ -33,32 +30,28 @@ function App() {
 				const web3Modal = new Web3Modal({
 					cacheProvider: true,
 					providerOptions,
+					network: "goerli",
+					disableInjectedProvider: false,
 				});
 
 				const selectedProvider = await web3Modal.connect();
-
 				const ethersProvider = new ethers.providers.Web3Provider(selectedProvider);
-				setProvider(ethersProvider);
+				setEthersProvider(ethersProvider);
 
 				const signer = ethersProvider.getSigner();
-				const address = await signer.getAddress();
-				setAccount(address);
-
-				const ethBalance = await ethersProvider.getBalance(address);
-
-				const formattedBalance = ethers.utils.formatEther(ethBalance);
-				setEthBalance(formattedBalance);
+				let walletAddress = await signer.getAddress();
+				setWalletAddress(walletAddress);
 			} catch (error) {
-				console.log(error);
+				console.log(error, "Oops, something went wrong!");
 			}
 		} else {
-			console.log("Metamask not found");
+			alert("Metamask not found, please install to proceed");
 		}
 	};
 
 	return (
 		<div className="app-wrapper">
-			<Panel ethBalance={ethBalance} />
+			<Panel ethersProvider={ethersProvider} walletAddress={walletAddress} />
 		</div>
 	);
 }
